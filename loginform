@@ -1,0 +1,49 @@
+const{test,expect} = require("@playwright/test")
+
+test("Validate full form", async function ({page}) {
+
+    await page.goto("https://freelance-learn-automation.vercel.app/signup")
+
+    await page.locator("//input[@placeholder = 'Name']").fill("Kartik")
+
+    await page.locator("//input[@placeholder = 'Email']").fill("ksharma12@gmail.com")
+
+    await page.locator("//input[@placeholder  ='Password']").fill("Kartik1234")
+
+    await page.locator("//input[@id='68bec4883f49e5e7142d0822']").click()
+
+    await page.locator("//input[@id='68f1d6bbbaf22d255dee2540']").click()
+
+    await page.locator("//input[@id='gender1']").click()
+
+    await page.locator("#state").selectOption({label:"Andhra Pradesh"})
+
+    await page.locator("#state").selectOption({label:"Maharashtra"})
+
+    await page.locator("#hobbies").selectOption(['Playing','Dancing'])
+
+    await page.locator("//button[normalize-space()='Sign up']").click()
+
+    
+
+    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/login")
+
+    await page.locator("//input[@id = 'email1']").fill("ksharma12@gmail.com")
+
+    await page.locator("//input[@id='password1']").fill("Kartik1234")
+
+    await page.locator("//button[normalize-space() = 'Sign in']").click()
+
+    
+
+    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
+
+    await page.locator("//img[@alt = 'menu']").click()
+
+    await page.locator("//button[normalize-space() = 'Sign out']").click()
+
+    
+
+    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/login")
+    
+})
