@@ -1,0 +1,21 @@
+const{test,expect} = require("@playwright/test")
+
+test("verify mouse hower",async function ({page}) {
+
+    await page.goto("https://freelance-learn-automation.vercel.app/login")
+
+    await page.locator("//input[@id='email1']").fill("admin@email.com")
+
+    await page.locator("//input[@id = 'password1']").fill("admin@123")
+
+    await page.locator("//button[normalize-space() = 'Sign in']").click()
+
+    await expect(page).toHaveURL("https://freelance-learn-automation.vercel.app/")
+
+    await page.waitForTimeout(5000)
+
+    await page.locator("//span[normalize-space() = 'Manage']").hover()
+
+    await page.locator("//a[normalize-space() = 'Manage Courses']").click()
+    
+})
